@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Django Shopify Example</title>
+    <script src="https://cdn.shopify.com/s/assets/external/app.js"></script>
+    <script type="text/javascript">
+    ShopifyApp.init({
+      apiKey: '4d9cd61191ac6b091515844b0520ceec',
+      shopOrigin: 'https://shopifygreen.myshopify.com',
+      debug: true
+    });
+  </script>
+  </head>
+  <body>
+    Shopify Embeded SDK Landing / Home page.
+
+    <script type="text/javascript">
+      ShopifyApp.ready(function(){
+        ShopifyApp.Bar.initialize({
+          icon: 'https://raw.githubusercontent.com/teference/shopify-dotnet/master/shopify-logo.png',
+          title: 'The App Title',
+          buttons: {
+            primary: {
+              label: 'Some Button',
+              message: 'save',
+              callback: function(){
+                ShopifyApp.redirect("/orders");
+              }
+            }
+          }
+        });
+      });
+    </script>
+    <style>
+      body {
+        background: #fff;
+      }
+    </style>
+  </body>
+</html>

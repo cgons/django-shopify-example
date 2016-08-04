@@ -17,6 +17,12 @@ from django.conf.urls import url
 from core import views
 
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index')
+    # ESDK urls
+    # -------------------------------------------------------------------------
+    url(r'^welcome$', views.esdk_home, name='esdk.home'),
+
+    # Shopify App urls
+    # -------------------------------------------------------------------------
+    url(r'^install$', views.app_install, name='app.install'),
+    url(r'^auth$', views.app_auth, name='app.auth'),
 ]
