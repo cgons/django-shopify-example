@@ -1,7 +1,6 @@
 import os
 import hmac
 from unittest.mock import MagicMock, patch
-import simplejson as json
 from django.test import TestCase
 
 from . import models
@@ -22,7 +21,7 @@ class ShopifyShopModelTestCase(TestCase):
         request.GET = dict(shop='testshop')
 
         test_resp = MagicMock()
-        test_resp.json.return_value = json.dumps({})
+        test_resp.json.return_value = {}
 
         ShopifyShop.create(test_resp, request)
 
@@ -34,7 +33,11 @@ class ShopifyShopModelTestCase(TestCase):
         request.GET = dict(shop='testshop')
 
         test_resp = MagicMock()
-        test_resp.json.return_value = json.dumps({})
+        test_resp.json.return_value = {
+            'access_token': '123faketoken',
+            'scope': 'read_scope, write_scope'
+        }
+        test_resp.status_code = 200
 
         ShopifyShop.create(test_resp, request)
 

@@ -29,7 +29,7 @@ class ShopifyShop(models.Model):
         """Returns a shopify install url with generated nonce."""
 
         # Create our nonce and save it to the session so we can verify the
-        # authenticity of the response we receive from Shopify (among other checks)
+        # authenticity of the response received from Shopify (among other checks)
         nonce = int(time())
         request.session[nonce] = True
 
@@ -43,7 +43,6 @@ class ShopifyShop(models.Model):
         )
         return install_url
 
-
     @staticmethod
     def send_auth_request(request):
         resp = requests.post(
@@ -55,7 +54,6 @@ class ShopifyShop(models.Model):
             )
         )
         return resp
-
 
     @classmethod
     def create(cls, resp, request):
@@ -69,6 +67,7 @@ class ShopifyShop(models.Model):
                 scopes=json_resp.get('scope'),
             )
 
+# -----------------------------------------------------------------------------
 
 def compose_hmac_message(dict_params):
     if 'hmac' in dict_params:
